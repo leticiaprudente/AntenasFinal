@@ -95,7 +95,6 @@ public class Model {
 		Document found = alunos.find(new Document("email", email).append("senha", senha)).first();
 
 		return found;
-
 	}
 
 	public FindIterable<Document> listaProjetos() {

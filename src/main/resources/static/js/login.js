@@ -42,8 +42,7 @@ $('#form_login').submit(function(e){
             window.location.href = 'principal.html';
             sessionStorage.setItem("sess_email_aluno",data.email);
         } else {
-            alert("Usuário não localizado");
-            window.location.href = 'index.html';
+            alert("Usuário ou senha incorreta!");
         }
             
     }, "json");

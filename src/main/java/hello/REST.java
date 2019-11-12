@@ -36,6 +36,9 @@ public class REST {
 				String senha = json.getString("senha");
 				try {
 					Document aluno = model.login(email, senha);
+					if(aluno==null) {
+						return false;
+					}
 					return aluno.toJson();
 
 				} catch (NullPointerException e) {
