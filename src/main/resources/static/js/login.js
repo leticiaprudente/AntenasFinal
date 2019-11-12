@@ -42,7 +42,7 @@ $('#form_login').submit(function(e){
             window.location.href = 'principal.html';
             sessionStorage.setItem("sess_email_aluno",data.email);
         } else {
-            alert("Usuário ou senha incorreta!");
+            document.getElementById("erro-login").style.display = "block";
         }
             
     }, "json");

@@ -44,10 +44,14 @@
 
         <label for="senha-login"></label>
         <input type="password" id="senha-login" name="senha-login" placeholder="Senha" style="max-width:450px" required>
+        <div id="erro-login" style="display:none">
+          <span style="color: red">Usuário ou senha incorreta(s)</span>
+        </div>
         <br></br>
 
         <button type="submit" style="max-width:225px">Entrar</button>
-        <br></br>
+        
+        <br/>
 
         <a href class="text" onclick="abrePopupCadastro(event)">Registre - se</a>
       </div>
