@@ -31,7 +31,7 @@ $(document).ready(function () {
 
 		$.post("/add-projeto", jsonSend, function (json) {
 			alert("Adicionado projeto " + codigoProjeto + " com sucesso!");
-			window.location.href = '/principal.html'
+			window.location.href = 'principal.html'
 		});
 	});
 

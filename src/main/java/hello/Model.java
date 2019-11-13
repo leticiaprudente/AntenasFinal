@@ -36,7 +36,7 @@ public class Model {
 		FindIterable<Document> found = projects.find(new Document("responsavel-aluno", emailAluno));
 		String foundJson = StreamSupport.stream(found.spliterator(), false).map(Document::toJson)
 				.collect(Collectors.joining(", ", "[", "]"));
-		System.out.println(foundJson);
+		//System.out.println(foundJson);
 		return foundJson;
 	}
 
@@ -113,13 +113,17 @@ public class Model {
 		return projetos.findOneAndUpdate(query, newDocument, (new FindOneAndUpdateOptions()).upsert(true));
 	}
 	
-	public Document submitProject(Document projeto, String autores, String desc, String link) {
+	public Document submitProject(String id, Document projeto, String autores, String desc, String link) {
 		MongoDatabase db = fongo.getDatabase("app");
 		MongoCollection<Document> projetos = db.getCollection("projeto");
-		BasicDBObject query = new BasicDBObject();
-		query.append("_id", projeto.get("_id"));
-		Bson newDocument = new Document("$set", projeto);
-		return projetos.findOneAndUpdate(query, newDocument, (new FindOneAndUpdateOptions()).upsert(true));
+		Document found = projetos.find(new Document("_id", id)).first();
+		BasicDBObject searchQuery = new BasicDBObject().append("_id", id);
+		projeto.put("fase", 6);
+		projeto.put("descricao-breve", desc);
+		projeto.put("link-externo-1", link);
+		System.out.println(projeto);
+		projetos.replaceOne(searchQuery, found);
+		return found;
 	}
 	
 	public List<String> listAlunos() {

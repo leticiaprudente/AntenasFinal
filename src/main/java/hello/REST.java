@@ -125,14 +125,16 @@ public class REST {
 	}
 	
 	public void entregaProjeto() {
-		post("/submit-project", (req, res) -> {
+		post("/entregar", (req, res) -> {
+			System.out.println("test");
 			Document project = Document.parse(req.body());
+			System.out.println(project);
 			String id = project.getString("id");
 			String alunos = project.getString("autores");
 			String descricao = project.getString("descricao");
-			String linkGitHub = project.getString("link-git");
+			String linkGitHub = project.getString("link");
 			Document now = model.getProject(id);
-			return model.submitProject(now, alunos, descricao, linkGitHub);
+			return model.submitProject(id, now, alunos, descricao, linkGitHub);
 		});
 	}
 

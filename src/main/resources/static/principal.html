@@ -84,26 +84,48 @@
         <label for="email-cadastro"><b>E-mail</b></label>
         <table id="myTable">
           <tr>
-            <td><input id="text" type="text"></td>
+            <td><input id="insertEmailEntrega" type="text"></td>
             <td><button type="button" onclick="addStudentToList()">+</button></td>
           </tr>
         </table>
         <br>
         
         <script type="text/javascript">
+        console.log(this);
+        let emails = [];
         function addStudentToList() {
-            var textField = document.getElementById("text"); 
+            var emailWrited = document.getElementById("insertEmailEntrega");
+            var email = document.getElementById("insertEmailEntrega").value;
+            emails.push(email);
             var table = document.getElementById("myTable");
             var row = table.insertRow(table.length);
             var cell1 = row.insertCell(table.length);
             var cell2 = row.insertCell(table.length);
-            cell1.innerHTML = textField.value;
+            cell1.innerHTML = emailWrited.value;
             cell2.innerHTML = "<a href='#' onclick='excluir("+row.rowIndex+")'>x</a>";
+            document.getElementById("insertEmailEntrega").value = '';
         }
-          function excluir(data) {
-            var table = document.getElementById("myTable");
-            table.deleteRow(data);
+        function excluir(data) {
+          var table = document.getElementById("myTable");
+          table.deleteRow(data);
         }
+        function entregar() { 
+          
+          emails.push(sessionStorage.getItem("sess_email_aluno"));
+          const usuario = sessionStorage.getItem("sess_email_aluno");
+          descricao = document.getElementById("desc-cadastro").value;
+          link = document.getElementById("Link-cadastro").value;
+          const callbackSubmit = (data) => {
+            console.log(data);
+          };
+          $.post("entregar", 
+            JSON.stringify(
+              {"id":"1234" ,"autores": usuario, "descricao": descricao, "link": link}),
+              callbackSubmit,
+            'json');
+            window.location.href='principal.html';
+        }
+
         </script>
 
         <label for="link-cadastro"><b>Link GitHub</b></label>
@@ -112,7 +134,7 @@
         <label for="desc-cadastro"><b>Descrição</b></label>
         <input type="text" id="desc-cadastro" required>
 
-        <button id="btn-cadastro">Entregar</button>
+        <button type="button" onclick="entregar()">Entregar</button>
       </div>
 
     </form>

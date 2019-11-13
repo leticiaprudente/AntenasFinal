@@ -37,6 +37,7 @@ public class MainServer {
 	    controller.loginAluno();
 	    controller.projetos();
 	    controller.atribuirProjeto();
+	    controller.entregaProjeto();
 	    model.addAluno(Document.parse("{'email':'leo@antenas.com','name':'Leo', 'senha':'12345', 'nivel':'1'}"));
     }
     
