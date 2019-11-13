@@ -64,10 +64,13 @@ public class Model {
 		MongoDatabase db = fongo.getDatabase("app");
 		MongoCollection<Document> projects = db.getCollection("projeto");
 		Document found = projects.find(new Document("_id", _id)).first();
-		BasicDBObject searchQuery = new BasicDBObject().append("_id", _id);
-		found.put("responsavel-aluno", emailAluno);
-		projects.replaceOne(searchQuery, found);
-		return found;
+		if(found!=null) {
+			BasicDBObject searchQuery = new BasicDBObject().append("_id", _id);
+			found.put("responsavel-aluno", emailAluno);
+			projects.replaceOne(searchQuery, found);
+			return found;
+		}
+		else return null;
 	}
 	
 	public Document getProject(String _id) {

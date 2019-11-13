@@ -29,9 +29,12 @@ $(document).ready(function () {
 		let email = sessionStorage.getItem("sess_email_aluno");
 		let jsonSend = '{"id": "' + codigoProjeto + '","email":"' + email + '"}';
 
-		$.post("/add-projeto", jsonSend, function (json) {
-			alert("Adicionado projeto " + codigoProjeto + " com sucesso!");
-			window.location.href = 'principal.html'
+		$.post("/add-projeto", jsonSend, function (data) {
+			if(data!="false") {
+				alert("Adicionado projeto " + codigoProjeto + " com sucesso!");
+				window.location.href = 'principal.html';
+			}
+			else document.getElementById("erro-add").style.display = "block";
 		});
 	});
 

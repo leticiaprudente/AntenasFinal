@@ -1,5 +1,3 @@
-
-console.log(this);
 let emails = [];
 function addStudentToList() {
     var emailWrited = document.getElementById("insertEmailEntrega");
@@ -24,7 +22,7 @@ function entregar() {
     descricao = document.getElementById("desc-cadastro").value;
     link = document.getElementById("Link-cadastro").value;
     const callbackSubmit = (data) => {
-        console.log(data);
+        //todo
     };
     $.post("entregar",
         JSON.stringify(

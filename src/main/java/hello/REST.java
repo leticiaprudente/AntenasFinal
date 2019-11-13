@@ -55,9 +55,15 @@ public class REST {
 			JSONObject json = new JSONObject(request.body());
 			String email = json.getString("email");
 			String id = json.getString("id");
-			model.atribuir(email, id);
 			
-			return json;
+			try {
+				Document retorno = model.atribuir(email, id);
+				if(retorno!=null) return retorno;
+				else return false;
+
+			} catch (NullPointerException e) {
+				return null;
+			}
 		});
 	}
 	public void inserirAluno() {
