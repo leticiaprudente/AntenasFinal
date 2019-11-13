@@ -14,11 +14,11 @@ $(document).ready(function () {
 		for (let i = 0; i < projetos.length; i++) {
 			var $tela = document.querySelector('#tpjr'),
 				HTMLTemporario = $tela.innerHTML,
-				HTMLNovo = "<tr> <th>" + projetos[i]._id + "</th>" 
-				+ "<th>" + projetos[i].nome + "</th>" + "<th>" 
-				+ projetos[i].fase + "</th>"
-				+ "<th><a href class='text' onclick='abrePopupPost(event)'>Entregar</a></th>" 
-				+ "</tr>";
+				HTMLNovo = "<tr> <th>" + projetos[i]._id + "</th>"
+					+ "<th>" + projetos[i].nome + "</th>" + "<th>"
+					+ projetos[i].fase + "</th>"
+					+ "<th><a href class='text' onclick='abrePopupPost(event)'>Entregar</a></th>"
+					+ "</tr>";
 			HTMLTemporario = HTMLTemporario + HTMLNovo;
 			$tela.innerHTML = HTMLTemporario;
 		}
