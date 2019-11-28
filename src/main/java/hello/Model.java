@@ -99,6 +99,24 @@ public class Model {
 
 		return found;
 	}
+	
+	public Document updateAluno(Document aluno) {
+		MongoDatabase db = fongo.getDatabase("app");
+		MongoCollection<Document> alunos = db.getCollection("alunos");
+		BasicDBObject query = new BasicDBObject();
+		query.append("_id", aluno.get("_id"));
+		Bson newDocument = new Document("$set", aluno);
+		return alunos.findOneAndUpdate(query, newDocument, (new FindOneAndUpdateOptions()).upsert(true));
+	}
+	
+	
+	public Document procurarEmail(String email) {
+		MongoDatabase db = fongo.getDatabase("app");
+		MongoCollection<Document> alunos = db.getCollection("alunos");
+    	Document found = alunos.find(new Document("email", email)).first();
+    	return found;
+    }
+	
 
 	public FindIterable<Document> listaProjetos() {
 		MongoDatabase db = fongo.getDatabase("app");
@@ -146,5 +164,7 @@ public class Model {
 		MongoCollection<Document> alunos = db.getCollection("alunos");
 		alunos.updateOne(filter, alteracao);
 		}
+	
+	
 
 }

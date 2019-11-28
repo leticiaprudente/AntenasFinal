@@ -31,3 +31,4 @@ function entregar() {
         'json');
     window.location.href = 'principal.html';
 }
+

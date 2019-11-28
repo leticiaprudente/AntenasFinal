@@ -31,6 +31,7 @@ $(document).ready(function () {
 
 		$.post("/add-projeto", jsonSend, function (data) {
 			if(data!="false") {
+				
 				alert("Adicionado projeto " + codigoProjeto + " com sucesso!");
 				window.location.href = 'principal.html';
 			}
@@ -43,6 +44,13 @@ $(document).ready(function () {
 		document.getElementById('cadastro').style.display = 'block';
 	});
 });
+
+function logout() {
+	sessionStorage.session_login=null;
+	
+	window.location.href = "index.html";
+	
+}
 
 
 function abrePopupLogin(event) {
